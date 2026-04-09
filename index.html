@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyBank | Secure Access</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+            background-color: #ffffff;
+            color: #1a1f36;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            max-width: 400px;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #2d336b; margin-bottom: 10px; }
+        .spinner { margin: 20px 0; }
+        .footer { margin-top: 30px; font-size: 11px; color: #a3acb9; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">EasyBank</div>
+        <p>Verifying your connection to ensure a secure session...</p>
+        
+        <div class="cf-turnstile" 
+             data-sitekey="PASTE_YOUR_SITEKEY_HERE" 
+             data-callback="onSuccess"></div>
+             
+        <p id="msg" style="font-size: 14px; color: #697386;"></p>
+    </div>
+
+    <div class="footer">
+        Security provided by Cloudflare &bull; Hosted on GitHub
+    </div>
+
+    <script>
+        // This triggers only after the bot check is passed
+        function onSuccess(token) {
+            document.getElementById('msg').innerText = "Verification successful. Redirecting...";
+            
+            // Redirect after 1 second
+            setTimeout(function() {
+                window.location.href = "https://google.com";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
